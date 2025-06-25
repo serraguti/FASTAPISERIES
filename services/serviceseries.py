@@ -9,7 +9,7 @@ class ServiceSeries():
 
     def __init__(self):
         self.connectionString = "DRIVER={ODBC Driver 17 for SQL Server}; SERVER=" + self.servidor + "; DATABASE=" + self.bbdd + "; UID=" + self.usuario + "; PWD=" + self.password    
-        self.conection = pyodbc.connect(self.connectionString)
+        self.connection = pyodbc.connect(self.connectionString)
     
     def getSeries(self):
         sql = "select * from SERIES"
@@ -24,5 +24,5 @@ class ServiceSeries():
             serie.year = row.ANYO
             data.append(serie)
         cursor.close()
-        self.conection.close()
+        self.connection.close()
         return data
