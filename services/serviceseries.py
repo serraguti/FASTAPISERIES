@@ -24,7 +24,6 @@ class ServiceSeries():
             serie.year = row.ANYO
             data.append(serie)
         cursor.close()
-        self.connection.close()
         return data
     
     def findSerie(self, idSerie: int):
@@ -34,7 +33,6 @@ class ServiceSeries():
         row = cursor.fetchone()
         if (not row):
             cursor.close()
-            self.connection.close()
             return None
         else:
             serie: Serie = Serie()
@@ -43,6 +41,27 @@ class ServiceSeries():
             serie.imagen = row.IMAGEN
             serie.year = row.ANYO
             cursor.close()
-            self.connection.close()
             return serie
+    
+    def insertSerie(self, idserie:int, nombre: str, imagen: str, year: int):
+        sql = "insert into SERIES values (?,?,?,?)"
+        cursor = self.connection.cursor()
+        cursor.execute(sql, (idserie, nombre, imagen, year))
+        cursor.commit()
+        cursor.close()
+
+    def updateSerie(self, idserie:int, nombre: str, imagen: str, year: int):
+        sql = "update SERIES set SERIE=?, IMAGEN=?, ANYO=? where IDSERIE=?"
+        cursor = self.connection.cursor()
+        cursor.execute(sql, (nombre, imagen, year, idserie))
+        cursor.commit()
+        cursor.close()
+
+    def deleteSerie(self, idserie:int):
+        sql = "delete from SERIES where IDSERIE=?"
+        cursor = self.connection.cursor()
+        cursor.execute(sql, (idserie))
+        cursor.commit()
+        cursor.close()        
+
     
