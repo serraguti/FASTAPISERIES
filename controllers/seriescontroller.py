@@ -1,10 +1,10 @@
 from fastapi import APIRouter
-# from services.serviceseries import ServiceSeries
-from services.serviceseriesmysql import ServiceSeriesMySql
+from services.serviceseries import ServiceSeries
+#from services.serviceseriesmysql import ServiceSeriesMySql
 from models.serie import Serie
 
-#service = ServiceSeries()
-service = ServiceSeriesMySql()
+service = ServiceSeries()
+#service = ServiceSeriesMySql()
 router = APIRouter()
 
 @router.get("/series")
