@@ -26,3 +26,23 @@ class ServiceSeries():
         cursor.close()
         self.connection.close()
         return data
+    
+    def findSerie(self, idSerie: int):
+        sql = "select * from SERIES where IDSERIE=?"
+        cursor = self.connection.cursor()
+        cursor.execute(sql, (idSerie))
+        row = cursor.fetchone()
+        if (not row):
+            cursor.close()
+            self.connection.close()
+            return None
+        else:
+            serie: Serie = Serie()
+            serie.id = row.IDSERIE
+            serie.nombre = row.SERIE
+            serie.imagen = row.IMAGEN
+            serie.year = row.ANYO
+            cursor.close()
+            self.connection.close()
+            return serie
+    
