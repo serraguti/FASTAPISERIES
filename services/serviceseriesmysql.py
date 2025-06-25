@@ -12,10 +12,10 @@ class ServiceSeriesMySql():
         data = []
         for row in cursor:
             serie: Serie = Serie()
-            serie.id = row.IDSERIE
-            serie.nombre = row.SERIE
-            serie.imagen = row.IMAGEN
-            serie.year = row.ANYO
+            serie.id = row[0]
+            serie.nombre = row[1]
+            serie.imagen = row[2]
+            serie.year = row[3]
             data.append(serie)
         cursor.close()
         return data
@@ -30,10 +30,10 @@ class ServiceSeriesMySql():
             return None
         else:
             serie: Serie = Serie()
-            serie.id = row.IDSERIE
-            serie.nombre = row.SERIE
-            serie.imagen = row.IMAGEN
-            serie.year = row.ANYO
+            serie.id = row[0]
+            serie.nombre = row[1]
+            serie.imagen = row[2]
+            serie.year = row[3]
             cursor.close()
             return serie
     
